@@ -18,26 +18,23 @@ const fetchMyIP = function(callback) {
 
 
 
-// FUNCTION: 
+// FUNCTION: fetch coordinates by ip
 
 const fetchCoordsByIP = function(ip, callback) {
   
-  request('https://freegeoip.app/json/', (error, response, body) => {
+  request(`https://freegeoip.app/json/${ip}`, (error, response, body) => {
 
     // error: request failed
     if (error) return callback(error, null);
 
     // non-200: assume server error
     if (response.statusCode !== 200) {
-      callback((Error(`Status Code ${response.statusCode} when fetching IP: ${body}`), null));
+      callback(Error(`Status Code ${response.statusCode} when fetching coordinates: ${body}`), null);
       return;
     }
-
-    const data = JSON.parse(body);
-    let latLongObj = {};
-    latLongObj['latitude'] = (data['latitude']).toString();
-    latLongObj['longitude'] = (data['longitude']).toString();
-    callback(null, latLongObj);
+    
+    const { latitude, longitude } = JSON.parse(body);
+    callback(null, { latitude, longitude });
   }); 
 };
 
