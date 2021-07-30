@@ -11,6 +11,8 @@ const printPassTimes = (passTimes) => {
   }
 };
 
+module.exports = { printPassTimes };
+
 
 nextISSTimesForMyLocation( (error, passTimes) => {
 
@@ -21,7 +23,7 @@ nextISSTimesForMyLocation( (error, passTimes) => {
 
   // success
   printPassTimes(passTimes);
-})
+});
 
 
 
