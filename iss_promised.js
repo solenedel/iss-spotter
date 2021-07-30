@@ -19,12 +19,12 @@ const fetchISSFlyOverTimes = function(body) {
 
 const nextISSTimesForMyLocation = function(body) {
   return fetchMyIP()
-.then(fetchCoordsByIP)
-.then(fetchISSFlyOverTimes)
-.then(data => {
-  const { response } = JSON.parse(data);
-  return response;
-});
+    .then(fetchCoordsByIP)
+    .then(fetchISSFlyOverTimes)
+    .then(data => {
+      const { response } = JSON.parse(data);
+      return response;
+    });
 
 };
 
